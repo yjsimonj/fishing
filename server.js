@@ -29,6 +29,9 @@ app.post('/login', (req, res) => {
     res.redirect('https://nid.naver.com/nidlogin.login');
 });
 
+const PORT = process.env.PORT || 3000; 
+
 app.listen(PORT, () => {
-    console.log(`서버가 가동되었습니다: http://localhost:${PORT}`);
+    // 2. 이제 실제 서버에서도 어색하지 않은 로그가 찍힙니다.
+    console.log(`서버가 성공적으로 실행되었습니다. (Port: ${PORT})`);
 });
